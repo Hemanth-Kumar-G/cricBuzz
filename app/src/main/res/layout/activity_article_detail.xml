@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.hemanth.cricbuzz.ui.articleDetail.ArticleDetailViewModel" />
+
+        <variable
+            name="data"
+            type="com.hemanth.cricbuzz.data.model.NewsResponse.Article" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.articleDetail.ArticleDetailActivity">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdvArticleImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zeroDp"
+            android:imageUri="@{data.urlToImage}"
+            app:actualImageScaleType="fitXY"
+            app:layout_constraintDimensionRatio="1:.6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeholderImage="@drawable/place_holder"
+            app:placeholderImageScaleType="fitXY" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/news_title_bg"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivArticleBack"
+            onBackClick="@{true}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/tenDp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sdvArticleImage"
+            app:srcCompat="@drawable/ic_arrow_back_ios"
+            app:tint="@color/white" />
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zeroDp"
+            android:padding="@dimen/tenDp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sdvArticleImage" />
+
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.loading?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sdvArticleImage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

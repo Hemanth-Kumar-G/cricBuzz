@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zeroDp">0dp</dimen>
+    <dimen name="tenDp">10dp</dimen>
+    <dimen name="fontEleven">11sp</dimen>
+    <dimen name="fontTen">10sp</dimen>
+    <dimen name="fontNine">9sp</dimen>
+    <dimen name="headerTitleSize">16sp</dimen>
+    <dimen name="fiveDp">5dp</dimen>
+    <dimen name="twentyDp">20dp</dimen>
+    <dimen name="fontTwelve">12sp</dimen>
+</resources>

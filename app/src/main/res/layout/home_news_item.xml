@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.hemanth.cricbuzz.data.model.NewsResponse.Article" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/tenDp"
+        app:cardCornerRadius="@dimen/tenDp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdvNewsImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zeroDp"
+                android:imageUri="@{data.urlToImage}"
+                app:actualImageScaleType="fitXY"
+                app:layout_constraintDimensionRatio="1:.6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeholderImage="@drawable/place_holder"
+                app:placeholderImageScaleType="fitXY" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNewsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/news_title_bg"
+                android:fontFamily="@font/circular_air_bold"
+                android:padding="@dimen/tenDp"
+                android:text="@{data.title}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fontEleven"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="No Chhath Puja at public places in Delhi due to Covid-19, rules DDMA - Hindustan Times" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNewsDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/news_desc_bg"
+                android:ellipsize="end"
+                android:fontFamily="@font/circular_air_light"
+                android:maxLines="2"
+                android:padding="@dimen/tenDp"
+                android:text="@{data.description}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fontTen"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="In an order, Delhi chief secretary Vijay Dev, who is also the DDMA executive committee chairman, directed all DMs and DCPs to ensure strict compliance of its order. On Tuesday, Delhi had recorded its highest daily Covid-19 infection count of 7,830." />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNewsAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/tenDp"
+                android:fontFamily="@font/circular_air_bold"
+                android:shadowColor="@color/textShadow"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="@{(data.author!=null) ?`~`+data.author:``}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fontNine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvNewsTitle"
+                tools:text="hindustantimes.com | Edited by Karan Manral" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

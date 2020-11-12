@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.hemanth.cricbuzz.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        onRefresh="@{viewModel::onRefresh}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.home.HomeActivity">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivHomeNewsBack"
+                onBackClick="@{true}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tenDp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_arrow_back"
+                app:tint="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHomeNewsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tenDp"
+                android:text="@string/news_feed"
+                android:textColor="@color/black"
+                android:textSize="@dimen/headerTitleSize"
+                app:fontFamily="@font/circular_air_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHomeNewsList"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zeroDp"
+                android:layout_marginBottom="@dimen/fiveDp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivHomeNewsBack"
+                tools:itemCount="10"
+                tools:listitem="@layout/home_news_item" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fiveDp"
+                android:drawableEnd="@drawable/ic_sort"
+                android:drawablePadding="@dimen/tenDp"
+                android:drawableTint="@color/black"
+                android:fontFamily="@font/circular_air_bold"
+                android:onClick="@{()->viewModel.sortList()}"
+                android:padding="@dimen/tenDp"
+                android:text="@string/sort_by"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#97000000"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{()->viewModel.dismissSort()}"
+                android:visibility="@{viewModel.sortByViewVisible?View.VISIBLE:View.GONE}" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSortByTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tenDp"
+                android:background="@drawable/round_corner_sort_bg"
+                android:fontFamily="@font/circular_air_light"
+                android:onClick="@{()->viewModel.sortByTime()}"
+                android:padding="@dimen/tenDp"
+                android:paddingStart="@dimen/twentyDp"
+                android:paddingEnd="@dimen/twentyDp"
+                android:text="@string/by_published_time"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fontTwelve"
+                android:visibility="@{viewModel.sortByViewVisible?View.VISIBLE:View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivHomeNewsBack" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSortByTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tenDp"
+                android:background="@drawable/round_corner_sort_bg"
+                android:fontFamily="@font/circular_air_light"
+                android:onClick="@{()->viewModel.sortByTitle()}"
+                android:paddingStart="@dimen/twentyDp"
+                android:paddingEnd="@dimen/twentyDp"
+                android:text="@string/by_news_title"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fontTwelve"
+                android:visibility="@{viewModel.sortByViewVisible?View.VISIBLE:View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnSortByTime" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieLoading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:elevation="@dimen/tenDp"
+                android:visibility="@{viewModel.loading?View.VISIBLE:View.GONE}"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="loading.json"
+                app:lottie_loop="true" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

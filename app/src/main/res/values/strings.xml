@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CricBuzz</string>
+    <string name="no_internet_error">No Internet</string>
+    <string name="retry">Retry</string>
+    <string name="news_feed">News Feed</string>
+    <string name="sort_by">Sort by</string>
+    <string name="by_published_time">By Published time</string>
+    <string name="by_news_title">By News Title</string>
+    <string name="exit_msg">Are you sure you want to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>
